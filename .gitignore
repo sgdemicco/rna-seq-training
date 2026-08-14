@@ -1,0 +1,10 @@
+raw_data/
+merged/
+reference/
+index/
+*.fastq*
+*.bam
+*.sf
+logs/*
+!logs/.gitkeep
+nano.*.save
