@@ -5,25 +5,27 @@ cd "$(dirname "$0")/.." #set working directory in the mother folder, easy access
 #defining variables
 OUTPUT="raw_data"
 LOGDIR="logs"
-SRRFILE="meta/SRR_Acc_List.txt"
+ENALINKS="meta/ena_links.txt"
 
 #create directory if not existing
 mkdir -p raw_data
 mkdir -p logs
 echo "Working directory created"
 
-#while cycle to read SRR identifiers
-while read -r srr #declare each SRR as a variable in the cycle
-do
-	[ -z "$srr" ] && continue #if line is empty, skip (-z says the string is zero length)
-	#if SRR is already in the directory, skip
-		if [ -f "$OUTPUT/${srr}.fastq.gz" ]; then
-		echo "$srr already downloaded"
-continue
-fi
-	echo "Downloading $srr"
-	#Download with accession number using parallel-fastq-dump
-	parallel-fastq-dump --sra-id "$srr" --outdir "$OUTPUT" --gzip --threads 6 #Using 6/8 threads of my CPU (Ctrl+Shift+Esc to verify threads)
-	echo "$srr downloaded and compressed"
-
-done < "$SRRFILE"
+#use aria2c to parallel
+aria2c \
+    --input-file="$ENALINKS" \
+    --dir="$OUTPUT" \
+    --max-connection-per-server=4 \
+    --split=4 \
+    --min-split-size=20M \
+    --max-concurrent-downloads=4 \
+    --continue=true \
+    --auto-file-renaming=false \
+    --file-allocation=none \
+    --log="$LOGDIR/aria2.log" \
+    --log-level=notice \
+    --summary-interval=30
+    --retry-wait= 5 \
+    --max-tries= 5 \
+    --connect-timeout= 30 \

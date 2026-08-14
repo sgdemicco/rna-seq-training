@@ -1,4 +1,16 @@
-#!usr/bin/env bash
+#!/usr/bin/env bash
 set -euo pipefail
-cd "../"
+cd "$(dirname "$0")/.."
 
+if [ -f "meta/ena_report.tsv" ]; then
+	echo "Metadata already available"
+else
+	echo "Retrieving ENA metadata of SRP029367"
+	curl -sf "https://www.ebi.ac.uk/ena/portal/api/filereport?accession=SRP029367&result=read_run&fields=run_accession,fastq_ftp,fastq_md5,read_count&format=tsv" \
+	> meta/ena_report.tsv
+	echo "Retrieved ENA meta"
+fi
+
+#Take the second column, with downloading link
+awk 'NR >1 {printf "https://%s\n", $2}' meta/ena_report.tsv > meta/ena_links.txt
+echo "Links obtained" 

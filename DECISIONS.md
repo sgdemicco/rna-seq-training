@@ -1,4 +1,4 @@
-
+### 2026-08-14
 #1 Let's start downloading files from NCBI using accession number  with script 1_download.sh
 -Create directories if not there
 -Verify that accession number list is valid and not empty
@@ -8,4 +8,6 @@ and using --gzip to compress while downloading
 -Trying --pzip -p 6 to parallelize compression (pzip is not available for parallel-fasterq-dump)
 -Trying to switch from SRA to ENA. ENA directly download fastq.
 -Need to create a new script to get metadata
+-Migration on ENA done
+-Using aria2c to retrieve data and not curl. Limited to 4 connections per time to do not limit download ratio
 
