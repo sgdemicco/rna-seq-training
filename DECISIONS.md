@@ -87,3 +87,33 @@ line count of a generated URL list before feeding it to a downloader.
 **Open question:** ENA md5 confirms the file matches what ENA published,
 not that the FASTQ itself is well-formed. Read-count and last-record checks
 are still to be added.
+
+---
+
+## 2026-08-16 — Quality control
+
+FastQC on all 16 runs, aggregated with MultiQC.
+
+- Read length: 100 bp, uniform across all runs → Salmon index `-k 31` (default)
+- GC content: 47–48%, consistent with human RNA-seq, no contamination signal
+- Duplication: 41–53%, expected for RNA-seq (highly expressed genes)
+- Adapter content: <2% in all runs
+
+**Decision: no trimming step.**
+Adapter contamination is below the threshold where trimming improves results,
+and Salmon's selective alignment tolerates residual 3' adapter without
+requiring full-length alignment.
+
+**Observation:** read counts pair up as 27.4/25.3, 16.2/14.9, 20.8/19.2,
+19.3/17.8, 11.0/10.2, 18.8/17.3, 16.1/14.8, 12.4/11.5 M — eight pairs of
+consecutive accessions, second run consistently ~8% smaller. Consistent with
+technical duplicates being two lanes of the same library.
+
+**Note:** SRR960455/456 show higher duplication (52.7/51.4%) and 18% failed
+modules vs 9% elsewhere; they also have the highest read counts, so this is
+likely depth-driven.
+
+**Environment issue:** `multiqc` was resolving to `/usr/bin/multiqc` (a broken
+system-wide pip install) instead of the conda env, producing reports with
+missing JS assets. Fixed by installing multiqc into the `qc` env.
+Lesson: check `which` before debugging a tool's behaviour.
