@@ -8,6 +8,11 @@ LOGDIR="logs"
 ENALINKS="meta/ena_links.txt"
 SRR="meta/SRR_Acc_List.txt"
 
+LOGFILE="$LOGDIR/$(basename "$0" .sh).log"
+exec > >(tee -a "$LOGFILE") 2>&1
+
+echo "=== $(date) ==="
+
 #create directory if not existing
 mkdir -p raw_data
 mkdir -p logs

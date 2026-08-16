@@ -7,6 +7,11 @@ LOGDIR="logs"
 ENAREP="meta/ena_report.tsv"
 SRR="meta/SRR_Acc_List.txt"
 
+LOGFILE="$LOGDIR/$(basename "$0" .sh).log"
+exec > >(tee -a "$LOGFILE") 2>&1
+
+echo "=== $(date) ==="
+
 fail=0
 
 diagnose() {

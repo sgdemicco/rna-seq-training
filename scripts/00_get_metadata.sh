@@ -2,6 +2,13 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
+LOGDIR="logs"
+
+LOGFILE="$LOGDIR/$(basename "$0" .sh).log"
+exec > >(tee -a "$LOGFILE") 2>&1
+
+echo "=== $(date) ==="
+
 if [ -f "meta/ena_report.tsv" ]; then
 	echo "Metadata already available"
 else
