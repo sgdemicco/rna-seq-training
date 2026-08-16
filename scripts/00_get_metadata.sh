@@ -6,8 +6,8 @@ if [ -f "meta/ena_report.tsv" ]; then
 	echo "Metadata already available"
 else
 	echo "Retrieving ENA metadata of SRP029367"
-	curl -sf "https://www.ebi.ac.uk/ena/portal/api/filereport?accession=SRP029367&result=read_run&fields=run_accession,fastq_ftp,fastq_md5,read_count&format=tsv" \
-	> meta/ena_report.tsv
+	curl -sf "https://www.ebi.ac.uk/ena/portal/api/filereport?accession=SRP029367&result=read_run&fields=run_accession,fastq_ftp,fastq_md5,fastq_bytes,read_count&format=tsv" \
+  	> meta/ena_report.tsv
 	echo "Retrieved ENA meta"
 fi
 

@@ -12,20 +12,23 @@ against the original findings rather than merely "looking plausible".
 - **Design**: 8 biological samples, single-end, sequenced in technical duplicate (16 runs)
 - **Retrieval**: FASTQ files pulled directly from ENA rather than converted from
   SRA — no format conversion, and ENA checksums apply to the downloaded files.
+- **Integrity**: each file verified against the ENA md5; the check script
+  distinguishes missing, incomplete and corrupted files and applies the
+  matching repair (fresh download vs. resume), then re-verifies.
 - **Rationale**: knockdown design provides a built-in positive control —
   the targeted gene must come out down-regulated, or the pipeline is wrong.
 
 ## Workflow
 
-| Step | Script | Environment | Status |
-|------|--------|-------------|--------|
-| Metadata & URLs | `scripts/00_metadata.sh` | base | done |
-| Download | `scripts/01_download.sh` | `fastq_download` | done |
-| Integrity check | `scripts/02_check.sh` | base | in progress |
-| QC | `scripts/03_qc.sh` | `qc` | not started |
-| Salmon index | `scripts/04_index.sh` | `salmon` | not started |
-| Quantification | `scripts/05_quant.sh` | `salmon` | not started |
-| Differential expression | `scripts/06_de.R` | `de` | not started |
+| Step | Script | Environment | Status | Checkpoint |
+|------|--------|-------------|--------|------------|
+| Metadata & URLs | `scripts/00_metadata.sh` | base | done | 16 runs in report |
+| Download | `scripts/01_download.sh` | `fastq_download` | done | 16/16 files present |
+| Integrity check | `scripts/02_check.sh` | base | done | 16/16 md5 match ENA |
+| QC | `scripts/03_qc.sh` | `qc` | not started | read length → index k |
+| Salmon index | `scripts/04_index.sh` | `salmon` | not started | — |
+| Quantification | `scripts/05_quant.sh` | `salmon` | not started | mapping rate > 70% |
+| Differential expression | `scripts/06_de.R` | `de` | not started | target gene down |
 
 Technical duplicates are quantified per run and collapsed to 8 biological
 samples in the DE step, not merged at the FASTQ level — this preserves
@@ -36,9 +39,12 @@ inter-run correlation as a QC check.
 ```bash
 conda env create -f envs/fastq_download.yml
 ./scripts/00_metadata.sh
-./scripts/01_download.sh  
-./scripts/02_check.sh
+./scripts/01_download.sh                        # ~25 GB, not tracked in git
+./scripts/02_check.sh && echo "all files verified"
 ```
+
+Each script exits non-zero on failure, so steps can be chained with `&&`
+without risking a downstream step running on bad data.
 
 ## Environment
 

@@ -1,3 +1,11 @@
+https://ftp.sra.ebi.ac.uk/vol1/fastq/SRR960/SRR960460/SRR960460.fastq.gz
+https://ftp.sra.ebi.ac.uk/vol1/fastq/SRR960/SRR960464/SRR960464.fastq.gz
+https://ftp.sra.ebi.ac.uk/vol1/fastq/SRR960/SRR960465/SRR960465.fastq.gz
+https://ftp.sra.ebi.ac.uk/vol1/fastq/SRR960/SRR960468/SRR960468.fastq.gz
+https://ftp.sra.ebi.ac.uk/vol1/fastq/SRR960/SRR960462/SRR960462.fastq.gz
+https://ftp.sra.ebi.ac.uk/vol1/fastq/SRR960/SRR960463/SRR960463.fastq.gz
+https://ftp.sra.ebi.ac.uk/vol1/fastq/SRR960/SRR960466/SRR960466.fastq.gz
+https://ftp.sra.ebi.ac.uk/vol1/fastq/SRR960/SRR960467/SRR960467.fastq.gz
 https://ftp.sra.ebi.ac.uk/vol1/fastq/SRR960/SRR960455/SRR960455.fastq.gz
 https://ftp.sra.ebi.ac.uk/vol1/fastq/SRR960/SRR960456/SRR960456.fastq.gz
 https://ftp.sra.ebi.ac.uk/vol1/fastq/SRR960/SRR960457/SRR960457.fastq.gz
@@ -6,11 +14,3 @@ https://ftp.sra.ebi.ac.uk/vol1/fastq/SRR960/SRR960459/SRR960459.fastq.gz
 https://ftp.sra.ebi.ac.uk/vol1/fastq/SRR960/SRR960461/SRR960461.fastq.gz
 https://ftp.sra.ebi.ac.uk/vol1/fastq/SRR960/SRR960469/SRR960469.fastq.gz
 https://ftp.sra.ebi.ac.uk/vol1/fastq/SRR960/SRR960470/SRR960470.fastq.gz
-https://ftp.sra.ebi.ac.uk/vol1/fastq/SRR960/SRR960462/SRR960462.fastq.gz
-https://ftp.sra.ebi.ac.uk/vol1/fastq/SRR960/SRR960463/SRR960463.fastq.gz
-https://ftp.sra.ebi.ac.uk/vol1/fastq/SRR960/SRR960466/SRR960466.fastq.gz
-https://ftp.sra.ebi.ac.uk/vol1/fastq/SRR960/SRR960467/SRR960467.fastq.gz
-https://ftp.sra.ebi.ac.uk/vol1/fastq/SRR960/SRR960460/SRR960460.fastq.gz
-https://ftp.sra.ebi.ac.uk/vol1/fastq/SRR960/SRR960464/SRR960464.fastq.gz
-https://ftp.sra.ebi.ac.uk/vol1/fastq/SRR960/SRR960465/SRR960465.fastq.gz
-https://ftp.sra.ebi.ac.uk/vol1/fastq/SRR960/SRR960468/SRR960468.fastq.gz
