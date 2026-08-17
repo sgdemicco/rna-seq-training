@@ -98,6 +98,9 @@ while read srr; do
     -r "$RAW/${srr}.fastq.gz" \
     -o "$OUTDIR/$srr" \
 	--seqBias \
+    --gcBias \
     -p 6
 
 done < "$SRR"
+
+multiqc -f -o results/multiqc results/fastqc results/quant
