@@ -117,3 +117,88 @@ likely depth-driven.
 system-wide pip install) instead of the conda env, producing reports with
 missing JS assets. Fixed by installing multiqc into the `qc` env.
 Lesson: check `which` before debugging a tool's behaviour.
+
+---
+
+## 2026-08-16/17 — Reference and indexing
+
+**Decision: Ensembl release 104, decoy-aware index.**
+
+Transcriptome (cDNA) and genome (primary assembly) taken from the same
+release. `primary_assembly` rather than `toplevel`: the latter includes
+haplotypes and patches, which as decoys add ambiguity without benefit.
+
+The gentrome is transcriptome + genome concatenated in that order; `decoys.txt`
+lists only the genome sequence *names*, telling Salmon which entries in the
+gentrome are decoys. Both derive from the same genome file — they are two
+views of one object, the names and the sequences. Salmon requires the decoy
+records to appear last in the FASTA, which the concatenation order satisfies.
+
+**Incident: empty decoy file.** The generation step sat inside the `else`
+branch of the genome download, so it never ran when the genome was already
+present. Salmon failed with "The decoy file was empty".
+
+**Incident: `wget -O` on a 404** writes the error page to the target file.
+A `[ -f ... ]` test then treats the garbage as a valid download. Same class of
+bug as the FASTQ checks: existence is not validity.
+
+**Incident: three failed index builds, ~25 min each**, all crashing at the
+same point with `locale::facet::_S_create_c_locale name not valid`. The
+message is misleading — the locale was valid (`C.UTF-8`, no "Cannot set"
+errors), forcing `LC_ALL=C` on the command line did not help, and `dmesg`
+showed no OOM kill. Root cause was salmon 1.11.4, a transitional C++ build.
+Salmon 2.0 (Rust rewrite) built the same gentrome, with the same decoy list
+and the same parameters, without error: 187,626 references, 194 decoys,
+25 minutes.
+
+**Note on memory:** the 2.0 builder uses external sorting (`--ramLimit`) and
+peaked at ~6 GB RSS, not the ~16 GB the C++ decoy-aware build was expected to
+need. WSL memory was raised to 24 GB (from the 15 GB default) before this was
+known — it turned out not to be necessary.
+
+**Note on locale:** `LC_ALL=C` is kept in all scripts, but for its real
+reason — consistent `sort` order and decimal parsing across machines — not
+for the salmon crash it did not fix.
+
+**Lesson:** when an error message points somewhere implausible, suspect the
+build before the environment.
+
+---
+
+## 2026-08-17 — Quantification
+
+**Result: 83.3–83.6% mapping rate across all 16 runs**, selective alignment
+on the decoy-aware index. Values are near-identical within technical duplicate
+pairs, consistent with homogeneous library preparation.
+
+On a decoy-aware index this figure counts only fragments better explained by
+a transcript than by the genome, so ~83% is a strong result rather than a
+mediocre one — the discarded fraction is largely intronic and intergenic.
+
+**Salmon 2.0 flag changes** (from the C++ command that was written first):
+
+- `--useVBOpt` — removed; VBEM is now the default. `--useEM` opts out.
+- `--validateMappings` — accepted but a no-op; selective alignment is the
+  default mapping mode. `--sketch` selects pseudoalignment instead.
+- `--fldMean` / `--fldSD` are priors, not overrides. On single-end data there
+  are no observed fragment lengths, so the defaults (250 / 25) determine
+  effective lengths and therefore TPMs. Left at default; noted here because
+  it is a real assumption, not a neutral one.
+
+**Decision: index presence is verified by file, not by directory.**
+`salmon index` creates its output directory at the start, so the directory
+exists even after a crash — as it did three times. The check now tests for
+`index.ssi`, `index.ctab`, `index.refinfo`, `index.ectab` with `-s`.
+
+**Open question:** the check does not record *which salmon version* built the
+index. Since 2.0 cannot read C++ indices, a future upgrade would find a
+"valid" index that is actually unusable. A small metadata file alongside the
+index (version, k, gentrome checksum) would close this.
+
+**Planned: idempotency refactor.**
+Four `if/else` blocks currently repeat the same "generate unless present"
+logic, with each filename written twice — the source of two naming-mismatch
+bugs. To be replaced by a single `ensure()` helper taking a target path and a
+command, testing with `-s` (non-empty) rather than `-f` (exists), so truncated
+artefacts are regenerated rather than accepted. Filenames then appear once
+each, as variables.

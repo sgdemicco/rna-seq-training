@@ -2,7 +2,8 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
-#Changing conventions to let salmon perfrom I/O operations correctly
+# Force C locale: guarantees consistent sort order and decimal parsing
+# across machines. Not related to the salmon 1.x crash (see DECISIONS.md).
 export LC_ALL=C
 export LANG=C
 
@@ -10,6 +11,7 @@ OUTDIR="results/quant"
 LOGDIR="logs/salmon_quasimapping"
 REFERENCE="reference/GRCh38_salmon_index"
 SRR="meta/SRR_Acc_List.txt"
+RAW="raw_data"
 
 LOGFILE="$LOGDIR/$(basename "$0" .sh).log"
 exec > >(tee -a "$LOGFILE") 2>&1
@@ -47,27 +49,55 @@ else
 fi
 
 if [ -f "$REFERENCE/Homo_Sapiens_Complete.txt" ]; then
-    echo "Skipping generation of complete transcriptome"
+    echo "Skipping generation of genome+transcriptome"
 else
-    echo "Generating complete transcriptome"
+    echo "Generating genome+transcriptome"
     cat "$REFERENCE/Homo_sapiens.GRCh38.cdna.all.fa"\
     <(gunzip -c "$REFERENCE/Homo_sapiens.GRCh38.genome.fa.gz") \
     > "$REFERENCE/Homo_Sapiens_Complete.txt"
 fi
 
-salmon index -t "$REFERENCE/Homo_Sapiens_Complete.txt" \
+#create an array with all the required files of the index
+index_requirement=(
+    "$REFERENCE/salmon_index/index.ssi"
+    "$REFERENCE/salmon_index/index.ctab"
+    "$REFERENCE/salmon_index/index.refinfo"
+    "$REFERENCE/salmon_index/index.ectab"
+)
+
+all_files_exist () {
+    for file in "${index_requirement[@]}"; do
+        if [ ! -f "$file" ]; then
+            return 1
+        fi
+    done
+    return 0
+}
+
+if [ -s "$REFERENCE/salmon_index" ] && all_files_exist "${index_requirement[@]}"; then
+    echo "Using existing salmon index"
+else
+    echo "Creating salmon index"
+    salmon index -t "$REFERENCE/Homo_Sapiens_Complete.txt" \
     -d "$REFERENCE/Homo_Sapiens_Decoys.txt" \
     -i "$REFERENCE/salmon_index" \
     -k 31 \
-    -p 6
+    -p 6 \
+    --ramLimit 16
+fi
+
+#Automatically identifies library type
+#use variational Bayesian EM rather than standard, more accurate
+#remove sequence-specific bias
+#keep only good reads
 
 while read srr; do
-    salmon quant -i "$REFERENCE/Homo_sapiens.GRCh38.cdna.all.fa" \
-    -l A \ #Automatically identifies library type
-    -r "$srr" \
+    salmon quant \
+    -i "$REFERENCE/salmon_index" \
+    -l A \
+    -r "$RAW/${srr}.fastq.gz" \
     -o "$OUTDIR/$srr" \
-    --useVBOpt \ #use variational Bayesian EM rather than standard, more accurate
-	--seqBias \ #remove sequence-specific bias
-	--validateMappings #keep only good reads
+	--seqBias \
+    -p 6
 
 done < "$SRR"

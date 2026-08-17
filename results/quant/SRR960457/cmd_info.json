@@ -1,0 +1,13 @@
+{
+  "salmon_version": "2.5.1",
+  "index": "reference/GRCh38_salmon_index/salmon_index",
+  "libType": "A",
+  "output": "results/quant/SRR960457",
+  "mates1": [],
+  "mates2": [],
+  "unmatedReads": [
+    "raw_data/SRR960457.fastq.gz"
+  ],
+  "threads": 6,
+  "sketch": false
+}
