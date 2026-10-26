@@ -78,7 +78,7 @@ while read -r srr; do
 	mkdir -p "$QUALIMAP_RESULTS/$srr"
 	ensure "$QUALIMAP_RESULTS/$srr/qualimapReport.html" \
 	qualimap rnaseq \
-		-outdir "$QUALIMAP_RESULTS" \
+		-outdir "$QUALIMAP_RESULTS/$srr" \
 		-a proportional \
 		-bam "$STAR_RESULTS/${srr}_Aligned.sortedByCoord.out.bam" \
 		-p strand-specific-reverse \

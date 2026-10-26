@@ -1,41 +1,42 @@
-[2026-10-26 16:52:27,209] multiqc                                            [DEBUG  ]  This is MultiQC v1.21
-[2026-10-26 16:52:27,215] multiqc                                            [DEBUG  ]  Command used: /usr/bin/multiqc -f -o results/multiqc results/fastqc results/quant results/star results/qualimap
-[2026-10-26 16:52:27,411] multiqc                                            [WARNING]  MultiQC Version v1.35 now available!
-[2026-10-26 16:52:27,411] multiqc                                            [DEBUG  ]  Latest MultiQC version is v1.35, released 2026-05-13
-[2026-10-26 16:52:27,411] multiqc                                            [DEBUG  ]  Working dir : /home/simone/bioinfo_analysis/bulk-rna-seq
-[2026-10-26 16:52:27,411] multiqc                                            [DEBUG  ]  Template    : default
-[2026-10-26 16:52:27,411] multiqc                                            [DEBUG  ]  Running Python 3.14.4 (main, Aug 20 2026, 10:41:58) [GCC 15.2.0]
-[2026-10-26 16:52:27,411] multiqc                                            [DEBUG  ]  Analysing modules: custom_content, ccs, ngsderive, purple, conpair, isoseq, lima, peddy, somalier, methylqa, mosdepth, phantompeakqualtools, qualimap, bamdst, preseq, hifiasm, quast, qorts, rna_seqc, rockhopper, rsem, rseqc, busco, bustools, goleft_indexcov, gffcompare, disambiguate, supernova, deeptools, sargasso, verifybamid, mirtrace, happy, mirtop, sambamba, gopeaks, homer, hops, macs2, theta2, snpeff, gatk, htseq, bcftools, featureCounts, fgbio, dragen, dragen_fastqc, dedup, pbmarkdup, damageprofiler, mapdamage, biobambam2, jcvi, mtnucratio, picard, vep, bakta, prokka, qc3C, nanostat, samblaster, samtools, sexdeterrmine, seqera_cli, eigenstratdatabasetools, bamtools, jellyfish, vcftools, longranger, stacks, varscan2, snippy, umitools, truvari, megahit, bbmap, bismark, biscuit, diamond, hicexplorer, hicup, hicpro, salmon, kallisto, slamdunk, star, hisat2, tophat, bowtie2, bowtie1, cellranger, snpsplit, odgi, pangolin, nextclade, freyja, humid, kat, leehom, librarian, nonpareil, adapterRemoval, bbduk, clipandmerge, cutadapt, flexbar, sourmash, kaiju, bracken, kraken, malt, motus, trimmomatic, sickle, skewer, sortmerna, biobloomtools, fastq_screen, afterqc, fastp, fastqc, filtlong, prinseqplusplus, pychopper, porechop, pycoqc, minionqc, anglerfish, multivcfanalyzer, clusterflow, checkqc, bcl2fastq, bclconvert, interop, ivar, flash, seqyclean, optitype, whatshap, spaceranger, xenome, xengsort, metaphlan, seqwho
-[2026-10-26 16:52:27,412] multiqc                                            [DEBUG  ]  Using temporary directory for creating report: /tmp/tmposdoqj4q
-[2026-10-26 16:52:27,419] multiqc                                            [INFO   ]  Search path : /home/simone/bioinfo_analysis/bulk-rna-seq/results/fastqc
-[2026-10-26 16:52:27,419] multiqc                                            [INFO   ]  Search path : /home/simone/bioinfo_analysis/bulk-rna-seq/results/quant
-[2026-10-26 16:52:27,419] multiqc                                            [INFO   ]  Search path : /home/simone/bioinfo_analysis/bulk-rna-seq/results/star
-[2026-10-26 16:52:27,419] multiqc                                            [INFO   ]  Search path : /home/simone/bioinfo_analysis/bulk-rna-seq/results/qualimap
-[2026-10-26 16:52:27,926] multiqc                                            [DEBUG  ]  Summary of files that were skipped by the search: [skipped_module_specific_max_filesize: 1124] // [skipped_no_match: 320] // [skipped_ignore_pattern: 16]
-[2026-10-26 16:52:27,941] multiqc                                            [DEBUG  ]  No samples found: custom_content
-[2026-10-26 16:52:27,944] multiqc.utils.util_functions                       [DEBUG  ]  Wrote data file qualimap_rnaseq_genome_results.txt
-[2026-10-26 16:52:28,010] multiqc.utils.util_functions                       [DEBUG  ]  Wrote data file qualimap_rnaseq_cov_hist.txt
-[2026-10-26 16:52:28,012] multiqc.modules.qualimap.qualimap                  [INFO   ]  Found 1 RNASeq reports
-[2026-10-26 16:52:28,545] multiqc                                            [DEBUG  ]  No samples found: htseq
-[2026-10-26 16:52:28,560] multiqc.modules.salmon.salmon                      [INFO   ]  Found 16 meta reports
-[2026-10-26 16:52:28,561] multiqc.utils.util_functions                       [DEBUG  ]  Wrote data file multiqc_salmon.txt
-[2026-10-26 16:52:28,561] multiqc.modules.salmon.salmon                      [INFO   ]  Found 16 fragment length distributions
-[2026-10-26 16:52:28,561] multiqc.modules.salmon.salmon                      [INFO   ]  Found 16 library format counts reports
-[2026-10-26 16:52:28,586] multiqc.modules.star.star                          [INFO   ]  Found 16 reports
-[2026-10-26 16:52:28,586] multiqc.utils.util_functions                       [DEBUG  ]  Wrote data file multiqc_star.txt
-[2026-10-26 16:52:28,668] multiqc.modules.fastqc.fastqc                      [INFO   ]  Found 16 reports
-[2026-10-26 16:52:28,668] multiqc.utils.util_functions                       [DEBUG  ]  Wrote data file multiqc_fastqc.txt
-[2026-10-26 16:52:28,703] multiqc.plots.plotly.heatmap                       [DEBUG  ]  Resizing from 495x528 to fit the maximum size 900x500
-[2026-10-26 16:52:28,703] multiqc.plots.plotly.heatmap                       [DEBUG  ]  Heatmap size: 900x500, px per element: 81.82x31.25
-[2026-10-26 16:52:28,709] multiqc.utils.software_versions                    [DEBUG  ]  Reading software versions from config.software_versions
-[2026-10-26 16:52:28,710] multiqc.utils.util_functions                       [DEBUG  ]  Wrote data file multiqc_software_versions.txt
-[2026-10-26 16:52:28,722] multiqc.utils.util_functions                       [DEBUG  ]  Wrote data file multiqc_general_stats.txt
-[2026-10-26 16:52:28,722] multiqc                                            [DEBUG  ]  Compressing plot data
-[2026-10-26 16:52:28,852] multiqc.utils.util_functions                       [DEBUG  ]  Wrote data file multiqc_data.json
-[2026-10-26 16:52:28,857] multiqc                                            [INFO   ]  Report      : results/multiqc/multiqc_report.html   (overwritten)
-[2026-10-26 16:52:28,857] multiqc                                            [INFO   ]  Data        : results/multiqc/multiqc_data   (overwritten)
-[2026-10-26 16:52:28,857] multiqc                                            [DEBUG  ]  Moving data file from '/tmp/tmposdoqj4q/multiqc_data' to '/home/simone/bioinfo_analysis/bulk-rna-seq/results/multiqc/multiqc_data'
-[2026-10-26 16:52:28,859] multiqc                                            [DEBUG  ]  Full report path: /home/simone/bioinfo_analysis/bulk-rna-seq/results/multiqc/multiqc_report.html
-[2026-10-26 16:52:28,885] multiqc                                            [ERROR  ]  Could not include file 'assets/js/packages/jszip.min.js': [Errno 2] No such file or directory: '/tmp/tmposdoqj4q/assets/js/packages/jszip.min.js'
-[2026-10-26 16:52:28,885] multiqc                                            [ERROR  ]  Could not include file 'assets/js/packages/plotly-2.27.0.min.js': [Errno 2] No such file or directory: '/tmp/tmposdoqj4q/assets/js/packages/plotly-2.27.0.min.js'
-[2026-10-26 16:52:28,907] multiqc                                            [INFO   ]  MultiQC complete
+[2026-10-26 18:05:28,697] multiqc                                            [DEBUG  ]  This is MultiQC v1.21
+[2026-10-26 18:05:28,697] multiqc                                            [DEBUG  ]  Command used: /usr/bin/multiqc -f -o results/multiqc results/fastqc results/quant results/star results/qualimap
+[2026-10-26 18:05:28,960] multiqc                                            [WARNING]  MultiQC Version v1.35 now available!
+[2026-10-26 18:05:28,960] multiqc                                            [DEBUG  ]  Latest MultiQC version is v1.35, released 2026-05-13
+[2026-10-26 18:05:28,961] multiqc                                            [DEBUG  ]  Working dir : /home/simone/bioinfo_analysis/bulk-rna-seq
+[2026-10-26 18:05:28,961] multiqc                                            [DEBUG  ]  Template    : default
+[2026-10-26 18:05:28,961] multiqc                                            [DEBUG  ]  Running Python 3.14.4 (main, Aug 20 2026, 10:41:58) [GCC 15.2.0]
+[2026-10-26 18:05:28,961] multiqc                                            [DEBUG  ]  Analysing modules: custom_content, ccs, ngsderive, purple, conpair, isoseq, lima, peddy, somalier, methylqa, mosdepth, phantompeakqualtools, qualimap, bamdst, preseq, hifiasm, quast, qorts, rna_seqc, rockhopper, rsem, rseqc, busco, bustools, goleft_indexcov, gffcompare, disambiguate, supernova, deeptools, sargasso, verifybamid, mirtrace, happy, mirtop, sambamba, gopeaks, homer, hops, macs2, theta2, snpeff, gatk, htseq, bcftools, featureCounts, fgbio, dragen, dragen_fastqc, dedup, pbmarkdup, damageprofiler, mapdamage, biobambam2, jcvi, mtnucratio, picard, vep, bakta, prokka, qc3C, nanostat, samblaster, samtools, sexdeterrmine, seqera_cli, eigenstratdatabasetools, bamtools, jellyfish, vcftools, longranger, stacks, varscan2, snippy, umitools, truvari, megahit, bbmap, bismark, biscuit, diamond, hicexplorer, hicup, hicpro, salmon, kallisto, slamdunk, star, hisat2, tophat, bowtie2, bowtie1, cellranger, snpsplit, odgi, pangolin, nextclade, freyja, humid, kat, leehom, librarian, nonpareil, adapterRemoval, bbduk, clipandmerge, cutadapt, flexbar, sourmash, kaiju, bracken, kraken, malt, motus, trimmomatic, sickle, skewer, sortmerna, biobloomtools, fastq_screen, afterqc, fastp, fastqc, filtlong, prinseqplusplus, pychopper, porechop, pycoqc, minionqc, anglerfish, multivcfanalyzer, clusterflow, checkqc, bcl2fastq, bclconvert, interop, ivar, flash, seqyclean, optitype, whatshap, spaceranger, xenome, xengsort, metaphlan, seqwho
+[2026-10-26 18:05:28,963] multiqc                                            [DEBUG  ]  Using temporary directory for creating report: /tmp/tmpxo0zdgct
+[2026-10-26 18:05:28,973] multiqc                                            [INFO   ]  Search path : /home/simone/bioinfo_analysis/bulk-rna-seq/results/fastqc
+[2026-10-26 18:05:28,973] multiqc                                            [INFO   ]  Search path : /home/simone/bioinfo_analysis/bulk-rna-seq/results/quant
+[2026-10-26 18:05:28,973] multiqc                                            [INFO   ]  Search path : /home/simone/bioinfo_analysis/bulk-rna-seq/results/star
+[2026-10-26 18:05:28,973] multiqc                                            [INFO   ]  Search path : /home/simone/bioinfo_analysis/bulk-rna-seq/results/qualimap
+[2026-10-26 18:05:31,466] multiqc                                            [DEBUG  ]  Summary of files that were skipped by the search: [skipped_module_specific_max_filesize: 2052] // [skipped_no_match: 832] // [skipped_ignore_pattern: 16]
+[2026-10-26 18:05:31,508] multiqc                                            [DEBUG  ]  No samples found: custom_content
+[2026-10-26 18:05:31,530] multiqc.modules.qualimap.QM_RNASeq                 [DEBUG  ]  Duplicate genome results sample name found! Overwriting: SRR960470
+[2026-10-26 18:05:31,541] multiqc.utils.util_functions                       [DEBUG  ]  Wrote data file qualimap_rnaseq_genome_results.txt
+[2026-10-26 18:05:31,810] multiqc.utils.util_functions                       [DEBUG  ]  Wrote data file qualimap_rnaseq_cov_hist.txt
+[2026-10-26 18:05:31,829] multiqc.modules.qualimap.qualimap                  [INFO   ]  Found 16 RNASeq reports
+[2026-10-26 18:05:35,189] multiqc                                            [DEBUG  ]  No samples found: htseq
+[2026-10-26 18:05:35,253] multiqc.modules.salmon.salmon                      [INFO   ]  Found 16 meta reports
+[2026-10-26 18:05:35,255] multiqc.utils.util_functions                       [DEBUG  ]  Wrote data file multiqc_salmon.txt
+[2026-10-26 18:05:35,255] multiqc.modules.salmon.salmon                      [INFO   ]  Found 16 fragment length distributions
+[2026-10-26 18:05:35,255] multiqc.modules.salmon.salmon                      [INFO   ]  Found 16 library format counts reports
+[2026-10-26 18:05:35,321] multiqc.modules.star.star                          [INFO   ]  Found 16 reports
+[2026-10-26 18:05:35,322] multiqc.utils.util_functions                       [DEBUG  ]  Wrote data file multiqc_star.txt
+[2026-10-26 18:05:35,536] multiqc.modules.fastqc.fastqc                      [INFO   ]  Found 16 reports
+[2026-10-26 18:05:35,537] multiqc.utils.util_functions                       [DEBUG  ]  Wrote data file multiqc_fastqc.txt
+[2026-10-26 18:05:35,665] multiqc.plots.plotly.heatmap                       [DEBUG  ]  Resizing from 495x528 to fit the maximum size 900x500
+[2026-10-26 18:05:35,665] multiqc.plots.plotly.heatmap                       [DEBUG  ]  Heatmap size: 900x500, px per element: 81.82x31.25
+[2026-10-26 18:05:35,689] multiqc.utils.software_versions                    [DEBUG  ]  Reading software versions from config.software_versions
+[2026-10-26 18:05:35,691] multiqc.utils.util_functions                       [DEBUG  ]  Wrote data file multiqc_software_versions.txt
+[2026-10-26 18:05:35,742] multiqc.utils.util_functions                       [DEBUG  ]  Wrote data file multiqc_general_stats.txt
+[2026-10-26 18:05:35,744] multiqc                                            [DEBUG  ]  Compressing plot data
+[2026-10-26 18:05:36,168] multiqc.utils.util_functions                       [DEBUG  ]  Wrote data file multiqc_data.json
+[2026-10-26 18:05:36,196] multiqc                                            [INFO   ]  Report      : results/multiqc/multiqc_report.html   (overwritten)
+[2026-10-26 18:05:36,196] multiqc                                            [INFO   ]  Data        : results/multiqc/multiqc_data   (overwritten)
+[2026-10-26 18:05:36,196] multiqc                                            [DEBUG  ]  Moving data file from '/tmp/tmpxo0zdgct/multiqc_data' to '/home/simone/bioinfo_analysis/bulk-rna-seq/results/multiqc/multiqc_data'
+[2026-10-26 18:05:36,256] multiqc                                            [DEBUG  ]  Full report path: /home/simone/bioinfo_analysis/bulk-rna-seq/results/multiqc/multiqc_report.html
+[2026-10-26 18:05:36,354] multiqc                                            [ERROR  ]  Could not include file 'assets/js/packages/jszip.min.js': [Errno 2] No such file or directory: '/tmp/tmpxo0zdgct/assets/js/packages/jszip.min.js'
+[2026-10-26 18:05:36,354] multiqc                                            [ERROR  ]  Could not include file 'assets/js/packages/plotly-2.27.0.min.js': [Errno 2] No such file or directory: '/tmp/tmpxo0zdgct/assets/js/packages/plotly-2.27.0.min.js'
+[2026-10-26 18:05:36,414] multiqc                                            [INFO   ]  MultiQC complete
