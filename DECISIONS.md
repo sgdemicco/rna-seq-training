@@ -202,3 +202,51 @@ bugs. To be replaced by a single `ensure()` helper taking a target path and a
 command, testing with `-s` (non-empty) rather than `-f` (exists), so truncated
 artefacts are regenerated rather than accepted. Filenames then appear once
 each, as variables.
+
+---
+
+## 2026-10-25/26 — Alignment QC (STAR + Qualimap)
+
+**Reversal of an earlier decision.** The STAR branch had been written but
+deliberately left unrun, on the grounds that the index cost (~45 min, 17 GB)
+was not justified by diagnostic metrics on libraries already shown to be
+homogeneous. The index turned out to have been built during a debugging run,
+so the expensive part was already paid — at which point running the branch
+was clearly better than documenting its absence.
+
+**Purpose:** Salmon discards genomic coordinates, so exonic/intronic/
+intergenic proportions and 5'-3' bias are not observable from the
+quantification path. STAR provides the coordinates; Qualimap reports the
+metrics. The counts used downstream still come from Salmon — the BAMs are
+QC artefacts, not analysis inputs.
+
+**Library type verified, not assumed.** Salmon's `-l A` detection reports
+`SR` (stranded, reverse) in `lib_format_counts.json`, so Qualimap runs with
+`-p strand-specific-reverse`. A wrong value here silently depresses the
+exonic fraction and would read as DNA contamination.
+
+**Incident: `../` in `--outFileNamePrefix`.** Scripts `cd` to the project
+root at startup, so the relative prefix wrote 35 GB of BAMs one level above
+the project. Qualimap then could not find them. Same class as the earlier
+path bugs: the path that produces a file and the path that tests for it must
+be the same string.
+
+**Incident: `$srr` empty after the loop.** Qualimap sat outside the `while
+read` loop and used `$srr`, which `read` clears on the final failing
+iteration — so the variable is always empty after `done`, regardless of how
+many iterations ran. Fixed by looping explicitly rather than inheriting.
+
+**Note:** Qualimap warns about ~44 contigs present in the BAM but absent from
+the GTF (GL*/KI* unplaced scaffolds). Expected: the STAR index was built on
+the primary assembly, which includes them, while the Ensembl GTF annotates
+the main chromosomes. Reads there are uncounted — well under 1% — and
+indexing only the main chromosomes would misplace them instead.
+
+**Note:** `--genomeLoad LoadAndKeep` fails under WSL2 (shared-memory limits).
+The index is reloaded for each sample, costing ~1 min per run — irrelevant at
+16 samples, worth knowing on a larger batch.
+
+**Open question:** Salmon reports ~83% mapping on a decoy-aware index; STAR
+reports a different "uniquely mapped %". The two measure different things
+(decoy-filtered transcriptomic assignment vs. unique genomic placement) and
+the comparison is worth writing up once the MultiQC table is in hand.

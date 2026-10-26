@@ -97,7 +97,7 @@ while read srr; do
     -l A \
     -r "$RAW/${srr}.fastq.gz" \
     -o "$OUTDIR/$srr" \
-	--seqBias \
+    --seqBias \
     --gcBias \
     -p 6
 

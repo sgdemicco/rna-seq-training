@@ -1,0 +1,2 @@
+Sample	reads_aligned	total_alignments	non_unique_alignments	reads_aligned_genes	ambiguous_alignments	not_aligned	reads_aligned_exonic	reads_aligned_intronic	reads_aligned_intergenic	reads_aligned_overlapping_exon	5_bias	3_bias	5_3_bias
+SRR960470	11342650	13362776	0	9861307	356677	171501	9861307	2001793	1140114	621735	0.77	0.66	1.02

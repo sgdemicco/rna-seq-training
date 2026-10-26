@@ -4,9 +4,9 @@
   ],
   "expected_format": "SR",
   "compatible_fragment_ratio": 1.0,
-  "num_compatible_fragments": 9590198,
-  "num_assigned_fragments": 9590198,
-  "num_frags_with_concordant_consistent_mappings": 9590198,
+  "num_compatible_fragments": 9590196,
+  "num_assigned_fragments": 9590196,
+  "num_frags_with_concordant_consistent_mappings": 9590196,
   "num_frags_with_inconsistent_or_orphan_mappings": 0,
   "strand_mapping_bias": 0.0
 }

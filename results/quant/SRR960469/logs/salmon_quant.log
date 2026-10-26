@@ -1,10 +1,10 @@
 salmon (rust port) v2.5.1
-start: Mon Aug 17 12:16:38 2026
-end:   Mon Aug 17 12:18:30 2026
+start: Sun Oct 25 13:52:03 2026
+end:   Sun Oct 25 13:55:03 2026
 library type: SR
 mapping type: mapping
 observed fragments: 12403621
-mapped fragments:   10331250
+mapped fragments:   10331249
 mapping rate: 83.2922%
-number of equivalence classes: 313602
+number of equivalence classes: 313603
 fragment length mean (sd): 250.00 (25.00)

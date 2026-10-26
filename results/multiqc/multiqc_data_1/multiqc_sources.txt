@@ -1,0 +1,17 @@
+Module	Section	Sample Name	Source
+FastQC	all_sections	SRR960455	/home/simone/bioinfo_analysis/bulk-rna-seq/results/fastqc/SRR960455_fastqc.zip
+FastQC	all_sections	SRR960456	/home/simone/bioinfo_analysis/bulk-rna-seq/results/fastqc/SRR960456_fastqc.zip
+FastQC	all_sections	SRR960457	/home/simone/bioinfo_analysis/bulk-rna-seq/results/fastqc/SRR960457_fastqc.zip
+FastQC	all_sections	SRR960458	/home/simone/bioinfo_analysis/bulk-rna-seq/results/fastqc/SRR960458_fastqc.zip
+FastQC	all_sections	SRR960459	/home/simone/bioinfo_analysis/bulk-rna-seq/results/fastqc/SRR960459_fastqc.zip
+FastQC	all_sections	SRR960460	/home/simone/bioinfo_analysis/bulk-rna-seq/results/fastqc/SRR960460_fastqc.zip
+FastQC	all_sections	SRR960461	/home/simone/bioinfo_analysis/bulk-rna-seq/results/fastqc/SRR960461_fastqc.zip
+FastQC	all_sections	SRR960462	/home/simone/bioinfo_analysis/bulk-rna-seq/results/fastqc/SRR960462_fastqc.zip
+FastQC	all_sections	SRR960463	/home/simone/bioinfo_analysis/bulk-rna-seq/results/fastqc/SRR960463_fastqc.zip
+FastQC	all_sections	SRR960464	/home/simone/bioinfo_analysis/bulk-rna-seq/results/fastqc/SRR960464_fastqc.zip
+FastQC	all_sections	SRR960465	/home/simone/bioinfo_analysis/bulk-rna-seq/results/fastqc/SRR960465_fastqc.zip
+FastQC	all_sections	SRR960466	/home/simone/bioinfo_analysis/bulk-rna-seq/results/fastqc/SRR960466_fastqc.zip
+FastQC	all_sections	SRR960467	/home/simone/bioinfo_analysis/bulk-rna-seq/results/fastqc/SRR960467_fastqc.zip
+FastQC	all_sections	SRR960468	/home/simone/bioinfo_analysis/bulk-rna-seq/results/fastqc/SRR960468_fastqc.zip
+FastQC	all_sections	SRR960469	/home/simone/bioinfo_analysis/bulk-rna-seq/results/fastqc/SRR960469_fastqc.zip
+FastQC	all_sections	SRR960470	/home/simone/bioinfo_analysis/bulk-rna-seq/results/fastqc/SRR960470_fastqc.zip
